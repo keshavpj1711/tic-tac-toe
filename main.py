@@ -28,8 +28,18 @@ def is_place_available(position):
 
 
 def game_logic():
-  pass
+  for i in range(0, 9):
+    if i%2 == 0:
+      p1_input = int(input("Player 1(X) enter position: "))
+      pos = get_location(p1_input)
+      board[pos[0]][pos[1]] = 'X'
 
+    else:
+      p2_input = int(input("Player 2(O) enter position: "))
+      pos = get_location(p2_input)
+      board[pos[0]][pos[1]] = 'O'
+
+    board_layout()
 
 def get_location(position):
 
@@ -47,9 +57,7 @@ def main():
   print("Welcome!!")
   show_position()
 
-  user_input = int(input("Enter a location: "))
-  loc = get_location(user_input)
-  print(loc)
+  game_logic()
 
   # Our next goal is to place elements
   
