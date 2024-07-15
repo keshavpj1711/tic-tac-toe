@@ -1,8 +1,10 @@
+import sys
+
 # Creating a 2d array to hold the 3x3 matrix
 rows, cols = (3, 3)
 board = [[0 for i in range(cols)] for j in range(rows)]
 
-
+# To show the numerical position to all the users
 def show_position():
   for i in range(0, 3):
     for j in range(0, 3):
@@ -15,6 +17,8 @@ def show_position():
     for j in range(0, 3):
       board[i][j] = " "  
 
+
+# To show the board 
 def board_layout():
   print(f" {board[0][0]} | {board[0][1]} | {board[0][2]}")
   print("-----------")
@@ -23,15 +27,16 @@ def board_layout():
   print(f" {board[2][0]} | {board[2][1]} | {board[2][2]}")
 
 
+# Checking if the place is available or occupied
 def is_place_available(position):
-  pass
+  if board[position[0]][position[1]] != " ":
+    return False
+  
+  return True
 
 
-def check_win(position):
-  pass
-
-
-def place_marker(player, chances):
+# This is to place the marker in the required position according to the player
+def place_marker(player):
   # Setting up marker for different players
   marker = ''
   if player == 1:
@@ -39,30 +44,24 @@ def place_marker(player, chances):
   else:
     marker = 'O'
 
-  input = int(input(f"Player {player}({marker}) enter position: "))
-  pos = get_location(input)
-  board[pos[0]][pos[1]] = 'X'
-  if chances > 4:
-    check_win(pos)
+  user_input = int(input(f"Player {player}({marker}) enter position: "))
+  pos = get_location(user_input)
+  # until user enters a correct place
+  while is_place_available(pos) == False:
+    print("Place already occupied")
+    user_input = int(input(f"Player {player}({marker}) enter position: "))
+    pos = get_location(user_input)  
 
+  board[pos[0]][pos[1]] = marker
 
-def game_logic():
-  for i in range(0, 9):
-    if i%2 == 0:
-      place_marker(1, i)
-    else:
-      place_marker(2, i)
-      
-    board_layout()
 
 def get_location(position):
-
   row = int((position-1)/3)
   col = (position-1)%3
   
   if position > 9:
     print("Please enter a valid position")
-    return None
+    return 
 
   return [row, col]
 
@@ -70,8 +69,6 @@ def get_location(position):
 def main():
   print("Welcome!!")
   show_position()
-
-  game_logic()
 
   # Our next goal is to place elements
   
