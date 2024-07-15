@@ -27,18 +27,32 @@ def is_place_available(position):
   pass
 
 
+def check_win(position):
+  pass
+
+
+def place_marker(player, chances):
+  # Setting up marker for different players
+  marker = ''
+  if player == 1:
+    marker = 'X'
+  else:
+    marker = 'O'
+
+  input = int(input(f"Player {player}({marker}) enter position: "))
+  pos = get_location(input)
+  board[pos[0]][pos[1]] = 'X'
+  if chances > 4:
+    check_win(pos)
+
+
 def game_logic():
   for i in range(0, 9):
     if i%2 == 0:
-      p1_input = int(input("Player 1(X) enter position: "))
-      pos = get_location(p1_input)
-      board[pos[0]][pos[1]] = 'X'
-
+      place_marker(1, i)
     else:
-      p2_input = int(input("Player 2(O) enter position: "))
-      pos = get_location(p2_input)
-      board[pos[0]][pos[1]] = 'O'
-
+      place_marker(2, i)
+      
     board_layout()
 
 def get_location(position):
