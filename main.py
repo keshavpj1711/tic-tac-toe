@@ -23,13 +23,41 @@ def board_layout():
   print(f" {board[2][0]} | {board[2][1]} | {board[2][2]}")
 
 
+def is_place_available(position):
+  pass
+
+
 def game_logic():
   pass
+
+
+def get_location(position):
+  if position/3 <= 1:
+    row = int((position-1)/3)
+    col = (position-1)%3
+  
+  elif position/3 <= 2:
+    row = int((position-1)/3)
+    col = (position-1)%3
+
+  elif position/3 <= 3:
+    row = int((position-1)/3)
+    col = (position-1)%3
+
+  else:
+    print("Please enter a valid position")
+    return None
+
+  return [row, col]
 
 
 def main():
   print("Welcome!!")
   show_position()
+
+  user_input = int(input("Enter a location: "))
+  loc = get_location(user_input)
+  print(loc)
 
   # Our next goal is to place elements
   
