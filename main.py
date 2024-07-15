@@ -32,19 +32,11 @@ def game_logic():
 
 
 def get_location(position):
-  if position/3 <= 1:
-    row = int((position-1)/3)
-    col = (position-1)%3
+
+  row = int((position-1)/3)
+  col = (position-1)%3
   
-  elif position/3 <= 2:
-    row = int((position-1)/3)
-    col = (position-1)%3
-
-  elif position/3 <= 3:
-    row = int((position-1)/3)
-    col = (position-1)%3
-
-  else:
+  if position > 9:
     print("Please enter a valid position")
     return None
 
