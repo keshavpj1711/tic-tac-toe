@@ -117,6 +117,9 @@ def game_logic():
     else:
       place_marker(2)
 
+    if i == 8:
+      print("It's a draw!!")
+
 
 def main():
   print("\n----Tic-Tac-Toe----\n")
